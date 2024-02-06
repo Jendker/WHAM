@@ -194,6 +194,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--save_pkl", action="store_true", help="Save output as pkl file"
     )
+    parser.add_argument(
+        "--gender", default="neutral", choices=["neutral", "male", "female"]
+    )
 
     args = parser.parse_args()
 
@@ -205,7 +208,7 @@ if __name__ == "__main__":
 
     # ========= Load WHAM ========= #
     smpl_batch_size = cfg.TRAIN.BATCH_SIZE * cfg.DATASET.SEQLEN
-    smpl = build_body_model(cfg.DEVICE, smpl_batch_size)
+    smpl = build_body_model(cfg.DEVICE, smpl_batch_size, args.gender)
     network = build_network(cfg, smpl)
     network.eval()
 
