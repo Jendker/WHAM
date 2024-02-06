@@ -3,6 +3,7 @@ from __future__ import print_function
 from __future__ import division
 
 import torch
+import os
 
 IMG_FEAT_DIM = {
     'resnet': 2048,
