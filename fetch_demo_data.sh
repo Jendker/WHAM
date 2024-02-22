@@ -1,11 +1,10 @@
 #!/bin/bash
-set -e
 
 SCRIPT_DIR=$(dirname "$0")
 cd "$SCRIPT_DIR"
 
 # return if done.flag exists
-[ -f done.flag ] && exit
+[ -f .done.flag ] && echo "Data already downloaded. To force download delete '$(realpath .done.flag)' file" && exit
 
 urle () { [[ "${1}" ]] || return 1; local LANG=C i x; for (( i = 0; i < ${#1}; i++ )); do x="${1:i:1}"; [[ "${x}" == [a-zA-Z0-9.~-] ]] && echo -n "${x}" || printf '%%%02X' "'${x}"; done; echo; }
 
@@ -56,4 +55,4 @@ gdown "https://drive.google.com/uc?id=1KjfODCcOUm_xIMLLR54IcjJtf816Dkc7&export=d
 tar -xvf examples.tar.gz
 rm -rf examples.tar.gz
 
-tourch done.flag
+touch .done.flag
