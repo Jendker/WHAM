@@ -9,6 +9,9 @@ from progress.bar import Bar
 
 
 def run_vis_on_demo(cfg, video, results, output_pth, smpl, vis_global=True):
+    if not results:
+        print("WARNING: Results are empty. Aborting visualizations.")
+        return
     # to torch tensor
     def tt(x):
         return torch.from_numpy(x).float().to(cfg.DEVICE)
